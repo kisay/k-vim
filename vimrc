@@ -424,6 +424,10 @@ Bundle 'gmarik/vundle'
 " :BundleInstall!    update
 " :BundleClean       remove plugin not in list
 
+"################ZendCoding自动补全##########
+Bundle "mattn/emmet-vim"
+" 快捷键 (Ctrl + y + ',')
+
 "################### 导航 ###################"
 "目录导航
 Bundle 'scrooloose/nerdtree'
@@ -553,56 +557,56 @@ let g:solarized_contrast="normal"
 let g:solarized_visibility="normal"
 
 "主题 molokai
-Bundle 'tomasr/molokai'
+"Bundle 'tomasr/molokai'
 "let g:molokai_original = 1
 
 "################### 快速移动 ###################"
 
 "更高效的移动 ,, + w/fx
-Bundle 'Lokaltog/vim-easymotion'
+"Bundle 'Lokaltog/vim-easymotion'
 
-Bundle 'vim-scripts/matchit.zip'
+"Bundle 'vim-scripts/matchit.zip'
 
 "################### 补全及快速编辑 ###################"
 
 "迄今为止用到的最好的自动VIM自动补全插件
-Bundle 'Valloric/YouCompleteMe'
+"Bundle 'Valloric/YouCompleteMe'
 "youcompleteme  默认tab  s-tab 和自动补全冲突
 "let g:ycm_key_list_select_completion=['<c-n>']
 let g:ycm_key_list_select_completion = ['<Down>']
 "let g:ycm_key_list_previous_completion=['<c-p>']
-let g:ycm_key_list_previous_completion = ['<Up>']
+"let g:ycm_key_list_previous_completion = ['<Up>']
 "在注释输入中也能补全
-let g:ycm_complete_in_comments = 1
+"let g:ycm_complete_in_comments = 1
 "在字符串输入中也能补全
-let g:ycm_complete_in_strings = 1
+"let g:ycm_complete_in_strings = 1
 "注释和字符串中的文字也会被收入补全
-let g:ycm_collect_identifiers_from_comments_and_strings = 0
+"let g:ycm_collect_identifiers_from_comments_and_strings = 0
 
 
 "快速插入代码片段
-Bundle 'SirVer/ultisnips'
-let g:UltiSnipsExpandTrigger = "<tab>"
-let g:UltiSnipsJumpForwardTrigger = "<tab>"
+"Bundle 'SirVer/ultisnips'
+"let g:UltiSnipsExpandTrigger = "<tab>"
+"let g:UltiSnipsJumpForwardTrigger = "<tab>"
 "定义存放代码片段的文件夹 .vim/snippets下，使用自定义和默认的，将会的到全局，有冲突的会提示
-let g:UltiSnipsSnippetDirectories=["snippets", "bundle/ultisnips/UltiSnips"]
+"let g:UltiSnipsSnippetDirectories=["snippets", "bundle/ultisnips/UltiSnips"]
 
 "快速 加减注释
 Bundle 'scrooloose/nerdcommenter'
 
 " 快速加入修改环绕字符
-Bundle 'tpope/vim-surround'
+"Bundle 'tpope/vim-surround'
 "for repeat -> enhance surround.vim, . to repeat command
-Bundle 'tpope/vim-repeat'
+"Bundle 'tpope/vim-repeat'
 
 "自动补全单引号，双引号等
 Bundle 'Raimondi/delimitMate'
 " for python docstring ",优化输入
-au FileType python let b:delimitMate_nesting_quotes = ['"']
+"au FileType python let b:delimitMate_nesting_quotes = ['"']
 
 "自动补全html/xml标签
-Bundle 'docunext/closetag.vim'
-let g:closetag_html_style=1
+"Bundle 'docunext/closetag.vim'
+"let g:closetag_html_style=1
 
 
 "for code alignment
@@ -644,16 +648,16 @@ highlight SyntasticErrorSign guifg=white guibg=black
 Bundle 'kevinw/pyflakes-vim'
 let g:pyflakes_use_quickfix = 0
 
+"################# 文件查找 #################
+#相较于Command-T等查找文件的插件，ctrlp.vim最大的好处在于没有依赖，干净利落
+Bundle 'ctrlp.vim'
 
 "################# 具体语言语法高亮 ###############
 
 " for python.vim syntax highlight
 Bundle 'hdima/python-syntax'
 let python_highlight_all = 1
-
-" for golang
-Bundle 'jnwhiteh/vim-golang'
-Bundle 'Blackrush/vim-gocode'
+undle 'Blackrush/vim-gocode'
 
 " for markdown
 Bundle 'plasticboy/vim-markdown'
@@ -668,11 +672,8 @@ let g:html_indent_style1 = "inc"
 "for jquery
 Bundle 'nono/jquery.vim'
 
-"for jinja2 highlight
-Bundle 'Glench/Vim-Jinja2-Syntax'
-
 "for nginx conf file highlight.   need to confirm it works
-Bundle 'thiderman/nginx-vim-syntax'
+"Bundle 'thiderman/nginx-vim-syntax'
 
 "################### 其他 ###################"
 " task list
