@@ -1,7 +1,30 @@
 snippet php
 	<?php
 	${1}
-	?>
+
+# for Laravel4
+snippet r::g
+	Route::get('/', function()
+	{
+		${1}
+	});
+snippet r::group
+	Route::group(array('prefix' => 'admin', 'before' => 'auth'), function()
+	{
+		${1}
+	});
+snippet r::p
+	Route::post('foo/bar', function()
+	{
+		${1}
+	});
+# End
+
+snippet __c
+	public function __construct(${1})
+	{
+		//code
+	}
 snippet ec
 	echo "${1:string}"${2};
 snippet inc

@@ -737,30 +737,42 @@ highlight SpellRare term=underline cterm=underline
 highlight clear SpellLocal
 highlight SpellLocal term=underline cterm=underline
 
-" settings for kien/rainbow_parentheses.vim
-au VimEnter * RainbowParenthesesToggle
-au Syntax * RainbowParenthesesLoadRound
-au Syntax * RainbowParenthesesLoadSquare
-au Syntax * RainbowParenthesesLoadBraces
-
-""定义函数SetTitle，自动插入文件头 尅自定义文件头信息
-autocmd BufNewFile *.sh,*.py exec ":call AutoSetFileHead()"
-func AutoSetFileHead()
-    "如果文件类型为.sh文件
-    if &filetype == 'sh'
-        call setline(1, "\#!/bin/bash")
-    endif
-
-    if &filetype == 'python'
-        call setline(1, "\#!/usr/bin/env python")
-        call append(1, "\# encoding: utf-8")
-    endif
-
-    normal G
-    normal o
-    normal o
-endfunc
-
-
 " F10 to run python script
 nnoremap <buffer> <F10> :exec '!python' shellescape(@%, 1)<cr>
+
+" 快捷键打开chrome
+nmap <leader>c :!open -a Google\ Chrome<cr>
+
+" Laravel framework commons
+ nmap <leader>lr :e app/routes.php<cr>
+ nmap <leader>lca :e app/config/app.php<cr>81Gf(%O
+ nmap <leader>lcd :e app/config/database.php<cr>
+ nmap <leader>lc :e composer.json<cr>
+ 
+ " Concept - load underlying class for Laravel
+function! FacadeLookup()
+      let facade = input('Facade Name: ')
+      let classes = {
+                'Form': 'Html/FormBuilder.php',
+                'Html': 'Html/HtmlBuilder.php',
+                'File': 'Filesystem/Filesystem.php',
+                'Eloquent': 'Database/Eloquent/Model.php'
+       }
+      execute ":edit vendor/laravel/framework/src/Illuminate/" .  classes[facade]
+endfunction
+nmap ,lf :call FacadeLookup()<cr>
+
+"自动完成
+abbrev pft PHPUnit_Framework_TestCase
+abbrev gm !php artisan generate:model
+abbrev gc !php artisan generate:controller
+abbrev gmig !php artisan generate:migration
+
+"DoxygenToolkit自动注释插件
+let g:DoxygenToolkit_briefTag_pre="@Synopsis  "
+let g:DoxygenToolkit_paramTag_pre="@Param "
+let g:DoxygenToolkit_returnTag="@Returns   "
+let g:DoxygenToolkit_blockHeader="--------------------------------------------------------------------------" 
+let g:DoxygenToolkit_blockFooter="----------------------------------------------------------------------------" 
+let g:DoxygenToolkit_authorName="Mathias Lorente"
+let g:DoxygenToolkit_licenseTag="My own license"   <-- !!! Does not end with "\<enter>"
