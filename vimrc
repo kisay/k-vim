@@ -253,15 +253,16 @@ set whichwrap+=<,>,h,l
 let mapleader = ','
 let g:mapleader = ','
 
+" 快速保存
+nmap <leader>w :w!<cr>
+nmap <leader>q :qa!<cr>
+
+" 自动将目录切换到当前文件位置
+nnoremap ,cd :cd %:p:h<CR>:pwd<CR>
+
 " Quickly edit/reload the vimrc file
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
-
-"强迫自己用 hjkl
-map <Left> <Nop>
-map <Right> <Nop>
-map <Up> <Nop>
-map <Down> <Nop>
 
 "Treat long lines as break lines (useful when moving around in them)
 "se swap之后，同物理行上线直接跳
@@ -515,6 +516,7 @@ Bundle 'Lokaltog/vim-powerline'
 let g:Powerline_symbols = 'unicode'
 
 
+
 "括号显示增强
 Bundle 'kien/rainbow_parentheses.vim'
 let g:rbpt_colorpairs = [
@@ -537,12 +539,7 @@ let g:rbpt_colorpairs = [
     \ ]
 let g:rbpt_max = 40
 let g:rbpt_loadcmd_toggle = 0
-
-"代码排版缩进标识  作用不大，复制的时候太蛋疼，去掉
-"Bundle 'Yggdroot/indentLine'
-"let g:indentLine_noConcealCursor = 1
-"let g:indentLine_color_term = 0
-"let g:indentLine_char = '¦'
+let g:indentLine_char = '¦'
 
 "for show no user whitespaces
 Bundle 'bronson/vim-trailing-whitespace'
@@ -551,7 +548,7 @@ map <leader><space> :FixWhitespace<cr>
 
 "主题 solarized
 Bundle 'altercation/vim-colors-solarized'
-"let g:solarized_termcolors=256
+let g:solarized_termcolors=256
 let g:solarized_termtrans=1
 let g:solarized_contrast="normal"
 let g:solarized_visibility="normal"
@@ -568,21 +565,6 @@ let g:solarized_visibility="normal"
 "Bundle 'vim-scripts/matchit.zip'
 
 "################### 补全及快速编辑 ###################"
-
-"迄今为止用到的最好的自动VIM自动补全插件
-"Bundle 'Valloric/YouCompleteMe'
-"youcompleteme  默认tab  s-tab 和自动补全冲突
-"let g:ycm_key_list_select_completion=['<c-n>']
-let g:ycm_key_list_select_completion = ['<Down>']
-"let g:ycm_key_list_previous_completion=['<c-p>']
-"let g:ycm_key_list_previous_completion = ['<Up>']
-"在注释输入中也能补全
-"let g:ycm_complete_in_comments = 1
-"在字符串输入中也能补全
-"let g:ycm_complete_in_strings = 1
-"注释和字符串中的文字也会被收入补全
-"let g:ycm_collect_identifiers_from_comments_and_strings = 0
-
 
 "快速插入代码片段
 "Bundle 'SirVer/ultisnips'
@@ -604,22 +586,12 @@ Bundle 'Raimondi/delimitMate'
 " for python docstring ",优化输入
 "au FileType python let b:delimitMate_nesting_quotes = ['"']
 
-"自动补全html/xml标签
-"Bundle 'docunext/closetag.vim'
-"let g:closetag_html_style=1
-
-
 "for code alignment
 Bundle 'godlygeek/tabular'
 nmap <Leader>a= :Tabularize /=<CR>
 vmap <Leader>a= :Tabularize /=<CR>
 nmap <Leader>a: :Tabularize /:\zs<CR>
 vmap <Leader>a: :Tabularize /:\zs<CR>
-
-"for visual selection
-Bundle 'terryma/vim-expand-region'
-map = <Plug>(expand_region_expand)
-map - <Plug>(expand_region_shrink)
 
 "for mutil cursor
 Bundle 'terryma/vim-multiple-cursors'
@@ -649,37 +621,14 @@ Bundle 'kevinw/pyflakes-vim'
 let g:pyflakes_use_quickfix = 0
 
 "################# 文件查找 #################
-#相较于Command-T等查找文件的插件，ctrlp.vim最大的好处在于没有依赖，干净利落
+"#相较于Command-T等查找文件的插件，ctrlp.vim最大的好处在于没有依赖，干净利落
 Bundle 'ctrlp.vim'
 
 "################# 具体语言语法高亮 ###############
-
-" for python.vim syntax highlight
-Bundle 'hdima/python-syntax'
-let python_highlight_all = 1
-undle 'Blackrush/vim-gocode'
-
-" for markdown
-Bundle 'plasticboy/vim-markdown'
-let g:vim_markdown_folding_disabled=1
-
-" for javascript
-Bundle "pangloss/vim-javascript"
-let g:html_indent_inctags = "html,body,head,tbody"
-let g:html_indent_script1 = "inc"
-let g:html_indent_style1 = "inc"
-
-"for jquery
-Bundle 'nono/jquery.vim'
-
 "for nginx conf file highlight.   need to confirm it works
 "Bundle 'thiderman/nginx-vim-syntax'
 
 "################### 其他 ###################"
-" task list
-Bundle 'vim-scripts/TaskList.vim'
-map <leader>td <Plug>TaskList
-
 " for git 尚未用起来
 Bundle 'tpope/vim-fugitive'
 
@@ -687,7 +636,6 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'sjl/gundo.vim'
 nnoremap <leader>h :GundoToggle<CR>
 
-" end turn on
 filetype plugin indent on
 
 "========================== config for plugins end ======================================
@@ -772,7 +720,8 @@ abbrev gmig !php artisan generate:migration
 let g:DoxygenToolkit_briefTag_pre="@Synopsis  "
 let g:DoxygenToolkit_paramTag_pre="@Param "
 let g:DoxygenToolkit_returnTag="@Returns   "
-let g:DoxygenToolkit_blockHeader="--------------------------------------------------------------------------" 
-let g:DoxygenToolkit_blockFooter="----------------------------------------------------------------------------" 
-let g:DoxygenToolkit_authorName="Mathias Lorente"
-let g:DoxygenToolkit_licenseTag="My own license"   <-- !!! Does not end with "\<enter>"
+let g:DoxygenToolkit_blockHeader="--------------------------------------------------------------------------"
+let g:DoxygenToolkit_blockFooter="----------------------------------------------------------------------------"
+
+" 自动移除尾部空格
+autocmd BufWritePre *.php :%s/\s\+$//e
